@@ -1,0 +1,21 @@
+table {
+ width: 100%; 
+}
+
+mat-card {
+    width: 100%; 
+    position: relative;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:80%;
+    border-radius: 13px;
+    height: 95%;
+    border: 1.5px solid rgba(0, 0, 0, .7);
+    background-color: antiquewhite;
+}
+
+#rightbottom {
+    position: relative;
+    margin-left: 82.4%;
+}

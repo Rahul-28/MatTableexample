@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
-const routes: Routes = [];
+let page!: number;
+const routes: Routes = []
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
