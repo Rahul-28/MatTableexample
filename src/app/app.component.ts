@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/internal/operators/map';
-import { UserData } from './random.data.interface';
+import { Result, UserData } from './random.data.interface';
 import { RandomusersService } from './randomusers.service';
 
 @Component({
@@ -13,36 +13,31 @@ import { RandomusersService } from './randomusers.service';
 
 export class AppComponent implements OnInit{
 
+  page: number = 0;
   pageEvent!: PageEvent;
-  dataSource!: MatTableDataSource<UserData>;
-  @ViewChild(MatPaginator) page!: MatPaginator;
+  totalRecords: number = 100;
+  dataSource = new MatTableDataSource<Result>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns = ['firstname', 'secondname', 'gender', 'dob', 'age', 'email', 'country', 'postcode'];
+  
   constructor(private service: RandomusersService) {}
    
   ngOnInit() {
-    this.getApi();
+    this.getApi(this.page);
+    this.dataSource.paginator = this.paginator; 
   }
 
-  getApi() {
-    this.service.getData(1).pipe(map((data: UserData ) => data.results)).subscribe((data: any) => {
+  getApi(pagenumber: number): void {
+    this.service.getData(pagenumber).pipe(map((data: UserData ) => data.results)).subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.page;
-      console.log(data);
     })
   }
 
-  getFIlteredValue(searchedData : UserData[]) {
+  getFIlteredValue(searchedData : Result[]): void {
     console.log(searchedData);
   }
 
-  onPagination(event: PageEvent) {
-    let currentIndex = event.pageIndex;
-    currentIndex = currentIndex +1;
-    console.log(currentIndex)
-    this.service.getData(currentIndex).pipe(map((data: UserData ) => data.results)).subscribe((data: any) => {
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.page;
-      console.log(data);
-    })
+  onPagination(): void {
+    this.getApi(this.paginator.pageIndex+1)
   }
 }

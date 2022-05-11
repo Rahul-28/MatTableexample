@@ -3,7 +3,7 @@
   <mat-card>
 
     <div>
-      <app-search-bar [SearchData]="dataSource" (search)="getFIlteredValue($event)"></app-search-bar>
+      <app-search-bar [searchData]="dataSource" (search)="getFIlteredValue($event)"></app-search-bar>
     </div>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -53,10 +53,11 @@
     
     </table>
     <mat-paginator 
-      [length]="1000"
+      [length]="totalRecords"
       [pageSize]="10"
       [pageSizeOptions]="[1, 5, 10]"
-      (page)="pageEvent = $event; onPagination($event)">
+      (page)="pageEvent = $event; onPagination()"
+      showFirstLastButtons="true">
     </mat-paginator>  
   </mat-card>
   <br>

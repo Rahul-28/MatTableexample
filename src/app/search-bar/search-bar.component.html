@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="legacy">
     <mat-label>Search</mat-label>
-    <input matInput (keyup)="applySearch($event)" placeholder="Type Something ..." >
+    <input matInput [(ngModel)] ="filterKey" (ngModelChange)="emitFilteredValue()" placeholder="Type Something ...">
 </mat-form-field>
