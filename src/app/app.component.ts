@@ -17,9 +17,9 @@ export class AppComponent implements OnInit ,AfterViewInit{
   page: number = 1;
   pageSize: number = 10;
   totalRecords: number = 1000;
-  dataSource = new MatTableDataSource<Result>([]);
+  dataSource = new MatTableDataSource<Result>();
   @ViewChild( MatPaginator ) paginator!: MatPaginator;
-  displayedColumns = ['firstname', 'secondname', 'gender', 'dob', 'age', 'email', 'country', 'postcode'];
+  displayedColumns: string[] = ['firstname', 'secondname', 'gender', 'dob', 'age', 'email', 'country', 'postcode'];
   
   constructor(private service: RandomusersService) {}
    
