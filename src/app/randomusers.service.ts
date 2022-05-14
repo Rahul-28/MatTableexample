@@ -10,7 +10,7 @@ export class RandomusersService {
   
 constructor(private http: HttpClient) { }
 
-  getData(page: number): Observable<UserData>{
-    return this.http.get<UserData>(`https://randomuser.me/api/?page=${page}&results=10&seed=abc`);
+  getData(page: number, size: number): Observable<UserData>{
+    return this.http.get<UserData>(`https://randomuser.me/api/?page=${page}&results=${size}&seed=abc`);
   }
 }

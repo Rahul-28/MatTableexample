@@ -54,11 +54,10 @@
     </table>
     <mat-paginator 
       [length]="totalRecords"
-      [pageSize]="10"
+      [pageSize]="pageSize"
       [pageSizeOptions]="[1, 5, 10]"
-      (page)="pageEvent = $event; onPagination()"
       showFirstLastButtons="true">
-    </mat-paginator>  
+    </mat-paginator>
   </mat-card>
   <br>
 </body>
